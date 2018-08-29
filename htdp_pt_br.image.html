@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module htdp_pt_br.image</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="htdp_pt_br.html"><font color="#ffffff">htdp_pt_br</font></a>.image</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/helio/PycharmProjects/htdp/htdp_pt_br/image.py">/home/helio/PycharmProjects/htdp/htdp_pt_br/image.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pygame.html">pygame</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-altura_imagem"><strong>altura_imagem</strong></a>(img)</dt><dd><tt>Retorna&nbsp;a&nbsp;altura&nbsp;da&nbsp;imagem<br>
+:param&nbsp;img:&nbsp;Imagem<br>
+:return:&nbsp;Int</tt></dd></dl>
+ <dl><dt><a name="-carregar_imagem"><strong>carregar_imagem</strong></a>(nome_arquivo, largura=100, altura=None, img_substituta=None)</dt><dd><tt>Carregar&nbsp;imagem&nbsp;pelo&nbsp;nome&nbsp;do&nbsp;arquivo.&nbsp;Pode-se&nbsp;definir&nbsp;as&nbsp;dimensões&nbsp;(largura&nbsp;e&nbsp;altura)&nbsp;e&nbsp;uma<br>
+imagem&nbsp;substituta&nbsp;para&nbsp;o&nbsp;caso&nbsp;de&nbsp;não&nbsp;conseguir&nbsp;carregar&nbsp;do&nbsp;arquivo.<br>
+Caso&nbsp;não&nbsp;seja&nbsp;fornecida&nbsp;imagem&nbsp;substituta&nbsp;e&nbsp;o&nbsp;arquivo&nbsp;não&nbsp;puder&nbsp;ser&nbsp;carregado,&nbsp;será&nbsp;desenhado<br>
+um&nbsp;texto&nbsp;informando&nbsp;o&nbsp;problema.<br>
+:param&nbsp;nome_arquivo:&nbsp;String<br>
+:param&nbsp;largura:&nbsp;Int&nbsp;(opcional)<br>
+:param&nbsp;altura:&nbsp;Int&nbsp;(opcional)<br>
+:param&nbsp;img_substituta:&nbsp;Imagem&nbsp;(opcional)<br>
+:return:&nbsp;Imagem</tt></dd></dl>
+ <dl><dt><a name="-circulo"><strong>circulo</strong></a>(raio, cor)</dt><dd><tt>Cria&nbsp;imagem&nbsp;de&nbsp;um&nbsp;círculo.<br>
+:param&nbsp;raio:&nbsp;Int<br>
+:param&nbsp;cor:&nbsp;Cor<br>
+:return:&nbsp;Imagem</tt></dd></dl>
+ <dl><dt><a name="-colocar_imagem"><strong>colocar_imagem</strong></a>(img1, img2, x, y)</dt><dd><tt>Coloca&nbsp;img1&nbsp;sobre&nbsp;a&nbsp;img2&nbsp;na&nbsp;posição&nbsp;x&nbsp;e&nbsp;y.<br>
+:param&nbsp;img1:&nbsp;Imagem<br>
+:param&nbsp;img2:&nbsp;Imagem<br>
+:param&nbsp;x:&nbsp;Int<br>
+:param&nbsp;y:&nbsp;Int<br>
+:return:&nbsp;Imagem</tt></dd></dl>
+ <dl><dt><a name="-colocar_imagem_sobre_tela_e_mostrar"><strong>colocar_imagem_sobre_tela_e_mostrar</strong></a>(img, x, y)</dt><dd><tt>Coloca&nbsp;a&nbsp;imagem&nbsp;sobre&nbsp;a&nbsp;tela&nbsp;principal&nbsp;na&nbsp;posição&nbsp;x&nbsp;e&nbsp;y&nbsp;e&nbsp;mostra&nbsp;na&nbsp;tela.<br>
+:param&nbsp;img:&nbsp;Imagem<br>
+:param&nbsp;x:&nbsp;Int<br>
+:param&nbsp;y:&nbsp;Int<br>
+:return:&nbsp;mostra&nbsp;imagem&nbsp;na&nbsp;tela</tt></dd></dl>
+ <dl><dt><a name="-definir_dimensoes"><strong>definir_dimensoes</strong></a>(imagem, largura, altura)</dt><dd><tt>Define&nbsp;dimensões&nbsp;(largura&nbsp;e&nbsp;altura)&nbsp;de&nbsp;uma&nbsp;imagem.<br>
+:param&nbsp;imagem:&nbsp;Imagem<br>
+:param&nbsp;largura:&nbsp;Int<br>
+:param&nbsp;altura:&nbsp;Int<br>
+:return:&nbsp;Imagem</tt></dd></dl>
+ <dl><dt><a name="-elipse"><strong>elipse</strong></a>(largura, altura, cor)</dt><dd><tt>Cria&nbsp;imagem&nbsp;de&nbsp;uma&nbsp;elipse.<br>
+:param&nbsp;largura:&nbsp;Int<br>
+:param&nbsp;altura:&nbsp;Int<br>
+:param&nbsp;cor:&nbsp;Cor<br>
+:return:&nbsp;Imagem</tt></dd></dl>
+ <dl><dt><a name="-encima"><strong>encima</strong></a>(img1, img2)</dt><dd><tt>Recebe&nbsp;duas&nbsp;imagens&nbsp;e&nbsp;as&nbsp;posiciona&nbsp;uma&nbsp;acima&nbsp;(no&nbsp;plano&nbsp;2D)&nbsp;da&nbsp;outra.<br>
+:param&nbsp;img1:&nbsp;Imagem<br>
+:param&nbsp;img2:&nbsp;Imagem<br>
+:return:&nbsp;Imagem</tt></dd></dl>
+ <dl><dt><a name="-folha_transparente"><strong>folha_transparente</strong></a>(largura, altura)</dt><dd><tt>Cria&nbsp;um&nbsp;fundo&nbsp;transparente&nbsp;no&nbsp;qual&nbsp;podem&nbsp;ser&nbsp;colocadas&nbsp;outras&nbsp;imagens.<br>
+:param&nbsp;largura:&nbsp;Int<br>
+:param&nbsp;altura:&nbsp;Int<br>
+:return:&nbsp;Imagem</tt></dd></dl>
+ <dl><dt><a name="-girar"><strong>girar</strong></a>(imagem, angulo)</dt><dd><tt>Girar&nbsp;imagem&nbsp;em&nbsp;um&nbsp;determinado&nbsp;ângulo<br>
+:param&nbsp;imagem:&nbsp;Imagem<br>
+:param&nbsp;angulo:&nbsp;Int&nbsp;--&nbsp;em&nbsp;graus<br>
+:return:&nbsp;Imagem</tt></dd></dl>
+ <dl><dt><a name="-lado"><strong>lado</strong></a>(img1, img2)</dt><dd><tt>Recebe&nbsp;duas&nbsp;imagens&nbsp;e&nbsp;as&nbsp;posiciona&nbsp;uma&nbsp;ao&nbsp;lado&nbsp;da&nbsp;outra.<br>
+:param&nbsp;img1:&nbsp;Imagem<br>
+:param&nbsp;img2:&nbsp;Imagem<br>
+:return:&nbsp;Imagem</tt></dd></dl>
+ <dl><dt><a name="-largura_imagem"><strong>largura_imagem</strong></a>(img)</dt><dd><tt>Retorna&nbsp;a&nbsp;largura&nbsp;da&nbsp;imagem<br>
+:param&nbsp;img:&nbsp;Imagem<br>
+:return:&nbsp;Int</tt></dd></dl>
+ <dl><dt><a name="-mostrar"><strong>mostrar</strong></a>(funcao_desenha, *args)</dt><dd><tt>Recebe&nbsp;uma&nbsp;função&nbsp;que&nbsp;retorna&nbsp;uma&nbsp;imagem&nbsp;e&nbsp;mostra&nbsp;na&nbsp;tela.<br>
+:param&nbsp;funcao_desenha:&nbsp;Function:&nbsp;QualquerCoisa&nbsp;-&gt;&nbsp;Imagem&nbsp;--&nbsp;função&nbsp;que&nbsp;retorna&nbsp;imagem<br>
+:param&nbsp;args:&nbsp;parâmetros&nbsp;da&nbsp;'funcao_desenha'<br>
+:return:&nbsp;mostra&nbsp;imagem&nbsp;na&nbsp;tela</tt></dd></dl>
+ <dl><dt><a name="-mostrar_tela"><strong>mostrar_tela</strong></a>()</dt><dd><tt>Mostra&nbsp;tela&nbsp;principal&nbsp;com&nbsp;a&nbsp;imagem&nbsp;atual.<br>
+:return:&nbsp;mostra&nbsp;imagem&nbsp;na&nbsp;tela</tt></dd></dl>
+ <dl><dt><a name="-poligono"><strong>poligono</strong></a>(lista_de_pontos, cor)</dt><dd><tt>TODO<br>
+:param&nbsp;lista_de_pontos:<br>
+:param&nbsp;cor:<br>
+:return:</tt></dd></dl>
+ <dl><dt><a name="-quadrado"><strong>quadrado</strong></a>(lado, cor)</dt><dd><tt>Cria&nbsp;imagem&nbsp;de&nbsp;um&nbsp;quadrado.<br>
+:param&nbsp;lado:&nbsp;Int<br>
+:param&nbsp;cor:&nbsp;Cor<br>
+:return:&nbsp;Imagem</tt></dd></dl>
+ <dl><dt><a name="-retangulo"><strong>retangulo</strong></a>(largura, altura, cor)</dt><dd><tt>Cria&nbsp;imagem&nbsp;de&nbsp;um&nbsp;retângulo.<br>
+:param&nbsp;largura:&nbsp;Int<br>
+:param&nbsp;altura:&nbsp;Int<br>
+:param&nbsp;cor:&nbsp;Cor<br>
+:return:&nbsp;Imagem</tt></dd></dl>
+ <dl><dt><a name="-sobrepor"><strong>sobrepor</strong></a>(img1, img2)</dt><dd><tt>Recebe&nbsp;duas&nbsp;imagens&nbsp;e&nbsp;as&nbsp;sobrepõe&nbsp;(img1&nbsp;encima&nbsp;de&nbsp;img2).<br>
+:param&nbsp;img1:&nbsp;Imagem<br>
+:param&nbsp;img2:&nbsp;Imagem<br>
+:return:&nbsp;Imagem</tt></dd></dl>
+ <dl><dt><a name="-texto"><strong>texto</strong></a>(str, fonte, cor, largura)</dt><dd><tt>Cria&nbsp;uma&nbsp;imagem&nbsp;com&nbsp;base&nbsp;em&nbsp;um&nbsp;texto.<br>
+:param&nbsp;str:&nbsp;String&nbsp;--&nbsp;o&nbsp;texto.<br>
+:param&nbsp;fonte:&nbsp;Fonte&nbsp;--&nbsp;a&nbsp;fonte&nbsp;(classe&nbsp;Fonte)&nbsp;do&nbsp;texto.<br>
+:param&nbsp;cor:&nbsp;Cor&nbsp;--&nbsp;a&nbsp;cor&nbsp;(classe&nbsp;Cor)&nbsp;do&nbsp;texto.<br>
+:param&nbsp;largura:&nbsp;Int&nbsp;--&nbsp;a&nbsp;largura&nbsp;na&nbsp;qual&nbsp;o&nbsp;texto&nbsp;deve&nbsp;estar&nbsp;contido.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ALTURA_PADRAO</strong> = 300<br>
+<strong>COR_BRANCO</strong> = (255, 255, 255)<br>
+<strong>LARGURA_PADRAO</strong> = 400<br>
+<strong>cor_fundo</strong> = (255, 255, 255, 255)<br>
+<strong>tela</strong> = &lt;Surface(400x300x32 SW)&gt;</td></tr></table>
+</body></html>

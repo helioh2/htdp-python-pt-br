@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module htdp_pt_br.universe</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="htdp_pt_br.html"><font color="#ffffff">htdp_pt_br</font></a>.universe</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/helio/PycharmProjects/htdp/htdp_pt_br/universe.py">/home/helio/PycharmProjects/htdp/htdp_pt_br/universe.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pygame.html">pygame</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-animar"><strong>animar</strong></a>(a_cada_tick, frequencia=28, modo_debug=False, fonte_debug=15)</dt><dd><tt>Função&nbsp;que&nbsp;recebe&nbsp;uma&nbsp;função&nbsp;(a_cada_tick)&nbsp;que&nbsp;recebe&nbsp;um&nbsp;inteiro&nbsp;e&nbsp;cria&nbsp;uma&nbsp;imagem.&nbsp;A&nbsp;função&nbsp;'a_cada_tick'&nbsp;é&nbsp;chamada<br>
+repetidamente&nbsp;(de&nbsp;acordo&nbsp;com&nbsp;o&nbsp;parâmetro&nbsp;frequencia),&nbsp;sendo&nbsp;que&nbsp;em&nbsp;cada&nbsp;loop&nbsp;o&nbsp;valor&nbsp;passado&nbsp;por&nbsp;parâmetro&nbsp;é&nbsp;incrementado,<br>
+possibilitando&nbsp;a&nbsp;criação&nbsp;de&nbsp;um&nbsp;filme&nbsp;(animação)&nbsp;com&nbsp;base&nbsp;na&nbsp;função&nbsp;'a_cada_tick'.<br>
+:param&nbsp;a_cada_tick:&nbsp;Function:&nbsp;Int&nbsp;-&gt;&nbsp;Imagem&nbsp;--&nbsp;função&nbsp;que&nbsp;recebe&nbsp;um&nbsp;número&nbsp;inteiro&nbsp;e&nbsp;gera,&nbsp;a&nbsp;partir&nbsp;disso,&nbsp;uma&nbsp;imagem<br>
+:param&nbsp;frequencia:&nbsp;Int&nbsp;--&nbsp;frequência&nbsp;(frame&nbsp;rate)&nbsp;com&nbsp;que&nbsp;a&nbsp;função&nbsp;'a_cada_tick'&nbsp;é&nbsp;chamada.<br>
+:param&nbsp;modo_debug:&nbsp;Boolean&nbsp;--&nbsp;flag&nbsp;que&nbsp;indica&nbsp;se&nbsp;devem&nbsp;aparecer&nbsp;informações&nbsp;de&nbsp;debug&nbsp;(escreve&nbsp;estado&nbsp;na&nbsp;tela).<br>
+:param&nbsp;fonte_debug:&nbsp;Int&nbsp;--&nbsp;tamanho&nbsp;da&nbsp;fonte&nbsp;do&nbsp;modo&nbsp;debug.<br>
+:return:&nbsp;Int&nbsp;--&nbsp;estado&nbsp;final&nbsp;quando&nbsp;animação&nbsp;é&nbsp;fechada.</tt></dd></dl>
+ <dl><dt><a name="-big_bang"><strong>big_bang</strong></a>(inic, tela=&lt;Surface(400x300x32 SW)&gt;, quando_tick=&lt;function &lt;lambda&gt; at 0x7f8844cee268&gt;, frequencia=28, desenhar=&lt;function &lt;lambda&gt; at 0x7f8822b662f0&gt;, quando_tecla=&lt;function &lt;lambda&gt; at 0x7f8822b66378&gt;, quando_solta_tecla=&lt;function &lt;lambda&gt; at 0x7f8822b66400&gt;, quando_mouse=&lt;function &lt;lambda&gt; at 0x7f8822b66488&gt;, parar_quando=&lt;function &lt;lambda&gt; at 0x7f8822b66510&gt;, modo_debug=False, fonte_debug=15)</dt><dd><tt>Função&nbsp;que&nbsp;funciona&nbsp;como&nbsp;um&nbsp;framework&nbsp;para&nbsp;desenvolvimento&nbsp;de&nbsp;programas&nbsp;interativos.<br>
+:param&nbsp;inic:&nbsp;EstadoMundo&nbsp;--&nbsp;estado&nbsp;inicial&nbsp;do&nbsp;mundo&nbsp;(programa).&nbsp;O&nbsp;tipo&nbsp;EstadoMundo&nbsp;deve&nbsp;ser&nbsp;definido&nbsp;pelo&nbsp;programador.<br>
+:param&nbsp;tela:&nbsp;Surface&nbsp;--&nbsp;(opcional)&nbsp;insere&nbsp;tela&nbsp;diferente&nbsp;da&nbsp;padrão.<br>
+:param&nbsp;quando_tick:&nbsp;Function:&nbsp;EstadoMundo&nbsp;-&gt;&nbsp;EstadoMundo&nbsp;--&nbsp;função&nbsp;que&nbsp;recebe&nbsp;o&nbsp;estado&nbsp;atual&nbsp;do&nbsp;mundo,&nbsp;gerando&nbsp;um&nbsp;novo&nbsp;estado.<br>
+:param&nbsp;frequencia:&nbsp;Int&nbsp;--&nbsp;frequência&nbsp;(frame&nbsp;rate)&nbsp;com&nbsp;que&nbsp;a&nbsp;função&nbsp;quando_tick&nbsp;é&nbsp;chamada.<br>
+:param&nbsp;desenhar:&nbsp;Function:&nbsp;EstadoMundo&nbsp;-&gt;&nbsp;Imagem&nbsp;--&nbsp;função&nbsp;que&nbsp;recebe&nbsp;estado&nbsp;atual&nbsp;do&nbsp;mundo&nbsp;e&nbsp;cria&nbsp;uma&nbsp;imagem.<br>
+:param&nbsp;quando_tecla:&nbsp;Function:&nbsp;EstadoMundo&nbsp;Tecla&nbsp;-&gt;&nbsp;EstadoMundo&nbsp;--&nbsp;função&nbsp;que&nbsp;recebe&nbsp;estado&nbsp;atual&nbsp;do&nbsp;mundo&nbsp;e&nbsp;o&nbsp;código&nbsp;de&nbsp;uma&nbsp;tecla&nbsp;(definido&nbsp;por&nbsp;pg.&lt;NOME_TECLA&gt;)&nbsp;quando&nbsp;a&nbsp;tecla&nbsp;é&nbsp;pressionada.<br>
+:param&nbsp;quando_solta_tecla:&nbsp;Function:&nbsp;EstadoMundo&nbsp;Tecla&nbsp;-&gt;&nbsp;EstadoMundo&nbsp;--&nbsp;função&nbsp;que&nbsp;recebe&nbsp;estado&nbsp;atual&nbsp;do&nbsp;mundo&nbsp;e&nbsp;o&nbsp;código&nbsp;de&nbsp;uma&nbsp;tecla&nbsp;(definido&nbsp;por&nbsp;pg.&lt;NOME_TECLA&gt;)&nbsp;quando&nbsp;a&nbsp;tecla&nbsp;é&nbsp;solta.<br>
+:param&nbsp;quando_mouse:&nbsp;Function:&nbsp;EstadoMundo&nbsp;EventoMouse&nbsp;Int&nbsp;Int&nbsp;-&gt;&nbsp;EstadoMundo&nbsp;--&nbsp;função&nbsp;que&nbsp;recebe&nbsp;estado&nbsp;atual&nbsp;do&nbsp;mundo,&nbsp;um&nbsp;código&nbsp;de&nbsp;evento&nbsp;de&nbsp;mouse&nbsp;(ex:&nbsp;pg.MOUSEBUTTONDOWN,&nbsp;pg.MOUSEBUTTONUP,&nbsp;pg.MOUSEMOTION),&nbsp;e&nbsp;a&nbsp;posição&nbsp;x&nbsp;e&nbsp;y&nbsp;em&nbsp;que&nbsp;o&nbsp;mouse&nbsp;se&nbsp;encontra&nbsp;na&nbsp;tela.<br>
+:param&nbsp;parar_quando:&nbsp;Function:&nbsp;EstadoMundo&nbsp;-&gt;&nbsp;Boolean&nbsp;--&nbsp;função&nbsp;que&nbsp;recebe&nbsp;estado&nbsp;atual&nbsp;do&nbsp;mundo&nbsp;e&nbsp;responde&nbsp;se&nbsp;deve&nbsp;(True)&nbsp;ou&nbsp;não&nbsp;deve&nbsp;(False)&nbsp;parar&nbsp;o&nbsp;programa.<br>
+:param&nbsp;modo_debug:&nbsp;Boolean&nbsp;--&nbsp;flag&nbsp;que&nbsp;indica&nbsp;se&nbsp;devem&nbsp;aparecer&nbsp;informações&nbsp;de&nbsp;debug&nbsp;(escreve&nbsp;estado&nbsp;na&nbsp;tela).<br>
+:param&nbsp;fonte_debug:&nbsp;Int&nbsp;--&nbsp;tamanho&nbsp;da&nbsp;fonte&nbsp;do&nbsp;modo&nbsp;debug.<br>
+:return:&nbsp;EstadoMundo&nbsp;--&nbsp;estado&nbsp;final&nbsp;do&nbsp;mundo&nbsp;no&nbsp;momento&nbsp;em&nbsp;que&nbsp;programa&nbsp;foi&nbsp;parado.</tt></dd></dl>
+ <dl><dt><a name="-escreve_estado"><strong>escreve_estado</strong></a>(estado, fonte_debug)</dt><dd><tt>Escreve&nbsp;na&nbsp;tela&nbsp;o&nbsp;estado&nbsp;interno.<br>
+:param&nbsp;estado:&nbsp;EstadoMundo<br>
+:param&nbsp;fonte_debug:&nbsp;Int&nbsp;--&nbsp;tamanho&nbsp;da&nbsp;fonte&nbsp;do&nbsp;modo&nbsp;debug.<br>
+:return:&nbsp;escreve&nbsp;o&nbsp;estado&nbsp;na&nbsp;tela.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ALTURA_PADRAO</strong> = 300<br>
+<strong>COR_BRANCO</strong> = (255, 255, 255)<br>
+<strong>LARGURA_PADRAO</strong> = 400<br>
+<strong>cor_fundo</strong> = (255, 255, 255, 255)<br>
+<strong>tela</strong> = &lt;Surface(400x300x32 SW)&gt;</td></tr></table>
+</body></html>
