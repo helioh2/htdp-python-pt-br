@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import pygame as pg
-# import sys, os
 
 pg.init()
 
@@ -31,6 +30,14 @@ def criar_tela_base(largura, altura, fundo=Cor("white")):
 tela = criar_tela_base(LARGURA_PADRAO, ALTURA_PADRAO)
 
 def definir_estrutura(nome, campos, mutavel=False):
+    '''
+    Define uma estrutura de dados compostos (uma classe).
+    Por padrão, a estrutura é imutável, mas pode-se criar mutáveis setando 'mutavel=True'.
+    :param nome: String -- nome do tipo
+    :param campos: List<String> -- lista com os nomes dos campos
+    :param mutavel: Boolean [=False]
+    :return: retorna um tipo de dado definido pelo programador.
+    '''
     if isinstance(campos, tuple):
         campos = list(campos)
     if not mutavel:

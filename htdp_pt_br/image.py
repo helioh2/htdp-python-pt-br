@@ -1,70 +1,68 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from htdp_pt_br.base import *
+import sys
+
 
 '''
 String, Fonte, Cor, Int -> Surface
 '''
 def texto(str, fonte, cor, largura):
-    def wrap_text(text, font, width):
-        """Wrap text to fit inside a given width when rendered.
-        :param text: The text to be wrapped.
-        :param font: The font the text will be rendered in.
-        :param width: The width to wrap to.
-        """
-        text_lines = text.replace('\t', '    ').split('\n')
-        if width is None or width == 0:
-            return text_lines
+    """
+    Cria uma imagem com base em um texto.
+    :param str: String -- o texto.
+    :param fonte: Fonte -- a fonte (classe Fonte) do texto.
+    :param cor: Cor -- a cor (classe Cor) do texto.
+    :param largura: Int -- a largura na qual o texto deve estar contido. 
+    """
+    def embrulha_texto(texto, fonte, largura):
+        
+        linhas = texto.replace('\t', '    ').split('\n')
+        if largura is None or largura == 0:
+            return linhas
 
-        wrapped_lines = []
-        for line in text_lines:
-            line = line.rstrip() + ' '
-            if line == ' ':
-                wrapped_lines.append(line)
+        linhas_embrulhadas = []
+        for linha in linhas:
+            linha = linha.rstrip() + ' '
+            if linha == ' ':
+                linhas_embrulhadas.append(linha)
                 continue
 
-            # Get the leftmost space ignoring leading whitespace
-            start = len(line) - len(line.lstrip())
-            start = line.index(' ', start)
-            while start + 1 < len(line):
+            # Pega o espaço mais à esquerda, ignorando o espaço em branco inicial
+            inicio = len(linha) - len(linha.lstrip())
+            inicio = linha.index(' ', inicio)
+            while inicio + 1 < len(linha):
                 # Get the next potential splitting point
-                next = line.index(' ', start + 1)
-                if font.size(line[:next])[0] <= width:
-                    start = next
+                proximo = linha.index(' ', inicio + 1)
+                if fonte.size(linha[:proximo])[0] <= largura:
+                    inicio = proximo
                 else:
-                    wrapped_lines.append(line[:start])
-                    line = line[start + 1:]
-                    start = line.index(' ')
-            line = line[:-1]
-            if line:
-                wrapped_lines.append(line)
-        return wrapped_lines
+                    linhas_embrulhadas.append(linha[:inicio])
+                    linha = linha[inicio + 1:]
+                    inicio = linha.index(' ')
+            linha = linha[:-1]
+            if linha:
+                linhas_embrulhadas.append(linha)
+        return linhas_embrulhadas
 
-    def render_text_list(lines, font, colour=(255, 255, 255)):
-        """Draw multiline text to a single surface with a transparent background.
-        Draw multiple lines of text in the given font onto a single surface
-        with no background colour, and return the result.
-        :param lines: The lines of text to render.
-        :param font: The font to render in.
-        :param colour: The colour to render the font in, default is white.
-        """
-        rendered = [font.render(line, True, colour).convert_alpha()
-                    for line in lines]
+    def desenha_lista_de_textos(linhas, fonte, cor=(255, 255, 255)):
+        desenhado = [fonte.render(line, True, cor).convert_alpha()
+                    for line in linhas]
 
-        line_height = font.get_linesize()
-        width = max(line.get_width() for line in rendered)
-        tops = [int(round(i * line_height)) for i in range(len(rendered))]
-        height = tops[-1] + font.get_height()
+        altura_linha = fonte.get_linesize()
+        largura = max(linha.get_width() for linha in desenhado)
+        topos = [int(round(i * altura_linha)) for i in range(len(desenhado))]
+        altura = topos[-1] + fonte.get_height()
 
-        surface = pg.Surface((width, height)).convert_alpha()
+        surface = pg.Surface((largura, altura)).convert_alpha()
         surface.fill((0, 0, 0, 0))
-        for y, line in zip(tops, rendered):
-            surface.blit(line, (0, y))
+        for y, linha in zip(topos, desenhado):
+            surface.blit(linha, (0, y))
 
         return surface
 
-    lines = wrap_text(str, fonte, largura)
-    return render_text_list(lines, fonte, cor)
+    linhas = embrulha_texto(str, fonte, largura)
+    return desenha_lista_de_textos(linhas, fonte, cor)
 
 
 
@@ -73,61 +71,125 @@ FUNÇÕES PARA CRIAÇÃO DE IMAGENS E FIGURAS GEOMÉTRICAS
 '''
 
 '''
-Int, Int, Cor -> Surface
+Int, Int, Cor -> Imagem
 '''
 def elipse(largura, altura, cor):
+    '''
+    Cria imagem de uma elipse.
+    :param largura: Int
+    :param altura: Int
+    :param cor: Cor
+    :return: Imagem
+    '''
     img = pg.Surface((largura, altura), pg.SRCALPHA)  # imagem vazia
     pg.draw.ellipse(img, cor, (0, 0, largura, altura))
     return img
 
 '''
-Int, Int, Cor -> Surface
+Int, Int, Cor -> Imagem
 '''
 def retangulo(largura, altura, cor):
+    '''
+    Cria imagem de um retângulo.
+    :param largura: Int
+    :param altura: Int
+    :param cor: Cor
+    :return: Imagem
+    '''
     img = pg.Surface((largura, altura), pg.SRCALPHA)  # imagem vazia
     pg.draw.rect(img, cor, (0, 0, largura, altura))
     return img
 
 '''
-Int, Cor -> Surface
+Int, Cor -> Imagem
 '''
 def circulo(raio, cor):
+    '''
+    Cria imagem de um círculo.
+    :param raio: Int
+    :param cor: Cor
+    :return: Imagem
+    '''
     img = pg.Surface((raio*2, raio*2), pg.SRCALPHA)  # imagem vazia
     pg.draw.circle(img, cor, (raio, raio), raio)
     return img
 
 '''
-Int, Cor -> Surface
+Int, Cor -> Imagem
 '''
 def quadrado(lado, cor):
+    '''
+    Cria imagem de um quadrado.
+    :param lado: Int
+    :param cor: Cor
+    :return: Imagem
+    '''
     return retangulo(lado, lado, cor)
 
 
 def poligono(lista_de_pontos, cor):
+    '''
+    TODO
+    :param lista_de_pontos:
+    :param cor:
+    :return:
+    '''
     return
 
 '''
-Int, Int -> Surface
+Int, Int -> Imagem
 '''
 def folha_transparente(largura, altura):
+    '''
+    Cria um fundo transparente no qual podem ser colocadas outras imagens.
+    :param largura: Int
+    :param altura: Int
+    :return: Imagem
+    '''
     folha = pg.Surface((largura, altura), pg.SRCALPHA)
     return folha
 
 '''
-Surface, Int, Int -> Surface
+Imagem, Int, Int -> Imagem
 '''
 def definir_dimensoes(imagem, largura, altura):
+    '''
+    Define dimensões (largura e altura) de uma imagem.
+    :param imagem: Imagem
+    :param largura: Int
+    :param altura: Int
+    :return: Imagem
+    '''
     return pg.transform.scale(imagem, (largura, altura))
 
-
+'''
+Imagem, Int -> Imagem
+'''
 def girar(imagem, angulo):
+    '''
+    Girar imagem em um determinado ângulo
+    :param imagem: Imagem
+    :param angulo: Int -- em graus
+    :return: Imagem
+    '''
     return pg.transform.rotate(imagem, angulo)
 
 '''
-String, [Int, Int, Surface] -> Surface
+String, [Int, Int, Imagem] -> Imagem
 Carrega imagem de arquivo. Se não for possível carregar, insere uma imagem substituta.
 '''
 def carregar_imagem(nome_arquivo, largura=100, altura=None, img_substituta=None):
+    '''
+    Carregar imagem pelo nome do arquivo. Pode-se definir as dimensões (largura e altura) e uma
+    imagem substituta para o caso de não conseguir carregar do arquivo.
+    Caso não seja fornecida imagem substituta e o arquivo não puder ser carregado, será desenhado
+    um texto informando o problema.
+    :param nome_arquivo: String
+    :param largura: Int (opcional)
+    :param altura: Int (opcional)
+    :param img_substituta: Imagem (opcional)
+    :return: Imagem
+    '''
     try:
         img = pg.image.load(nome_arquivo)
         if largura and altura:
@@ -139,10 +201,16 @@ def carregar_imagem(nome_arquivo, largura=100, altura=None, img_substituta=None)
         return img
 
 '''
-Surface, Surface -> Surface
+Imagem, Imagem -> Imagem
 Coloca uma imagem ao lado da outra
 '''
 def lado(img1, img2):
+    '''
+    Recebe duas imagens e as posiciona uma ao lado da outra.
+    :param img1: Imagem
+    :param img2: Imagem
+    :return: Imagem
+    '''
     fundo = folha_transparente(img1.get_width() + img2.get_width(),
                                     max(img1.get_height(), img2.get_height()))
     colocar_imagem(img1, fundo, img1.get_width()//2, fundo.get_height()//2)
@@ -151,10 +219,16 @@ def lado(img1, img2):
 
 
 '''
-Surface, Surface -> Surface
+Imagem, Imagem -> Imagem
 Coloca uma imagem acima da outra
 '''
 def encima(img1, img2):
+    '''
+    Recebe duas imagens e as posiciona uma acima (no plano 2D) da outra.
+    :param img1: Imagem
+    :param img2: Imagem
+    :return: Imagem
+    '''
     fundo = folha_transparente(max(img1.get_width(), img2.get_width()),
                                img1.get_height() + img2.get_height())
     colocar_imagem(img1, fundo, fundo.get_width()//2, img1.get_height()//2)
@@ -162,10 +236,16 @@ def encima(img1, img2):
     return fundo
 
 '''
-Surface, Surface -> Surface
-Sobrepõe imagens, de modo a facilitar a geração de imagens.
+Imagem, Imagem -> Imagem
+Sobrepõe imagens, de modo a facilitar a geração de imagens personalizadas.
 '''
 def sobrepor(img1, img2):
+    '''
+    Recebe duas imagens e as sobrepõe (img1 encima de img2).
+    :param img1: Imagem
+    :param img2: Imagem
+    :return: Imagem
+    '''
     altura_maxima = max(img1.get_height(), img2.get_height())
     largura_maxima = max(img1.get_width(), img2.get_width())
     fundo = folha_transparente(largura_maxima, altura_maxima)
@@ -175,15 +255,25 @@ def sobrepor(img1, img2):
 
 
 def largura_imagem(img):
+    '''
+    Retorna a largura da imagem
+    :param img: Imagem
+    :return: Int
+    '''
     return img.get_width()
 
 def altura_imagem(img):
+    '''
+    Retorna a altura da imagem
+    :param img: Imagem
+    :return: Int
+    '''
     return img.get_height()
+
 
 '''
 FUNÇÕES DE CRIAÇÃO DE TELA E SOBREPOSIÇÕES
 '''
-
 
 '''
 Surface, Surface, Int, Int -> Surface		
@@ -191,15 +281,24 @@ Coloca uma imagem (tipo pg.Surface) sobre outra na posição x e y, considerando
 a posição da imagem como seu centro.
 '''
 def colocar_imagem(img1, img2, x, y):
+    '''
+    Coloca img1 sobre a img2 na posição x e y.
+    :param img1: Imagem
+    :param img2: Imagem
+    :param x: Int
+    :param y: Int
+    :return: Imagem
+    '''
     img2.blit(img1, (x - img1.get_width()//2, y - img1.get_height()//2))
     return img2
 
 
 def mostrar(funcao_desenha, *args):
     '''
-    :param funcao_desenha: Funcao que retorna imagem
-    :param args:
-    :return:
+    Recebe uma função que retorna uma imagem e mostra na tela.
+    :param funcao_desenha: Function: QualquerCoisa -> Imagem -- função que retorna imagem
+    :param args: parâmetros da 'funcao_desenha'
+    :return: mostra imagem na tela
     '''
     while True:
         for event in pg.event.get():
@@ -212,6 +311,25 @@ def mostrar(funcao_desenha, *args):
 Surface, Int, Int -> void
 '''
 def colocar_imagem_sobre_tela_e_mostrar(img, x, y):
+    '''
+    Coloca a imagem sobre a tela principal na posição x e y e mostra na tela.
+    :param img: Imagem
+    :param x: Int
+    :param y: Int
+    :return: mostra imagem na tela
+    '''
     mostrar(colocar_imagem, img, tela, x, y)
 
+
+def mostrar_tela():
+    '''
+    Mostra tela principal com a imagem atual.
+    :return: mostra imagem na tela
+    '''
+    while True:
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                sys.exit(0)
+        pg.display.flip()
+        # tela.blit(folha_transparente(0, 0), (0, 0))
 

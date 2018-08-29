@@ -14,6 +14,21 @@ def big_bang(inic,
              parar_quando=lambda e: False,\
              modo_debug=False,
              fonte_debug = 15):
+    '''
+    Função que funciona como um framework para desenvolvimento de programas interativos.
+    :param inic: EstadoMundo -- estado inicial do mundo (programa). O tipo EstadoMundo deve ser definido pelo programador.
+    :param tela: Surface -- (opcional) insere tela diferente da padrão.
+    :param quando_tick: Function: EstadoMundo -> EstadoMundo -- função que recebe o estado atual do mundo, gerando um novo estado.
+    :param frequencia: Int -- frequência (frame rate) com que a função quando_tick é chamada.
+    :param desenhar: Function: EstadoMundo -> Imagem -- função que recebe estado atual do mundo e cria uma imagem.
+    :param quando_tecla: Function: EstadoMundo Tecla -> EstadoMundo -- função que recebe estado atual do mundo e o código de uma tecla (definido por pg.<NOME_TECLA>) quando a tecla é pressionada.
+    :param quando_solta_tecla: Function: EstadoMundo Tecla -> EstadoMundo -- função que recebe estado atual do mundo e o código de uma tecla (definido por pg.<NOME_TECLA>) quando a tecla é solta.
+    :param quando_mouse: Function: EstadoMundo EventoMouse Int Int -> EstadoMundo -- função que recebe estado atual do mundo, um código de evento de mouse (ex: pg.MOUSEBUTTONDOWN, pg.MOUSEBUTTONUP, pg.MOUSEMOTION), e a posição x e y em que o mouse se encontra na tela.
+    :param parar_quando: Function: EstadoMundo -> Boolean -- função que recebe estado atual do mundo e responde se deve (True) ou não deve (False) parar o programa.
+    :param modo_debug: Boolean -- flag que indica se devem aparecer informações de debug (escreve estado na tela).
+    :param fonte_debug: Int -- tamanho da fonte do modo debug.
+    :return: EstadoMundo -- estado final do mundo no momento em que programa foi parado.
+    '''
 
     # pg.init()
     estado = inic
@@ -50,7 +65,17 @@ def big_bang(inic,
         clock.tick(frequencia)
 
 
-def animar(a_cada_tick, frequencia=28):
+def animar(a_cada_tick, frequencia=28, modo_debug=False, fonte_debug=15):
+    '''
+    Função que recebe uma função (a_cada_tick) que recebe um inteiro e cria uma imagem. A função 'a_cada_tick' é chamada
+    repetidamente (de acordo com o parâmetro frequencia), sendo que em cada loop o valor passado por parâmetro é incrementado,
+    possibilitando a criação de um filme (animação) com base na função 'a_cada_tick'.
+    :param a_cada_tick: Function: Int -> Imagem -- função que recebe um número inteiro e gera, a partir disso, uma imagem
+    :param frequencia: Int -- frequência (frame rate) com que a função 'a_cada_tick' é chamada.
+    :param modo_debug: Boolean -- flag que indica se devem aparecer informações de debug (escreve estado na tela).
+    :param fonte_debug: Int -- tamanho da fonte do modo debug.
+    :return: Int -- estado final quando animação é fechada.
+    '''
     clock = pg.time.Clock()
     i = 0
     while True:
@@ -65,16 +90,19 @@ def animar(a_cada_tick, frequencia=28):
         a_cada_tick(i)
         i += 1
 
-        clock.tick(frequencia)
+        if modo_debug:
+            escreve_estado(i, fonte_debug)
 
-# def animar2(a_cada_tick, frequencia=28):
-#     while True:
-#         a_cada_tick(i)
-#
-#         clock.tick(frequencia)
+        clock.tick(frequencia)
 
 
 def escreve_estado(estado, fonte_debug):
+    '''
+    Escreve na tela o estado interno.
+    :param estado: EstadoMundo
+    :param fonte_debug: Int -- tamanho da fonte do modo debug.
+    :return: escreve o estado na tela.
+    '''
     myfont = pg.font.SysFont("monospace", fonte_debug)
     # texto = str(estado).split(',')
     import re
@@ -85,12 +113,5 @@ def escreve_estado(estado, fonte_debug):
         label = myfont.render(line, 1, (255, 0, 0))
         tela.blit(label, (5, counter))
         counter += fonte_debug
-
-
-# def escreve_estado(estado, fonte_debug):
-#     texto_img = texto(str(estado), Fonte("monospace", fonte_debug), Cor("red"), tela.get_width()//2)
-#     tela.blit(texto_img, (5,5))
-
-
 
 
