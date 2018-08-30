@@ -127,14 +127,68 @@ def quadrado(lado, cor):
     return retangulo(lado, lado, cor)
 
 
-def poligono(lista_de_pontos, cor):
+def poligono(lista_de_pontos, cor, contorno = 0):
     '''
-    TODO
-    :param lista_de_pontos:
-    :param cor:
-    :return:
+    Cria um polígono com base em uma lista de pontos (considere o canto inferior esquerdo como o ponto (0,0)).
+    :param lista_de_pontos: List<Tuple(Int, Int)> -- lista de pares ordenados indicando os pontos que formam o polígono
+    :param cor: Cor
+    :param contorno [=0]: Int --- use um valor maior que 0 para que o poligono seja contornado. Caso seja 0 (padrão), o polígono sera preenchido.
+    :return: Imagem
     '''
-    return
+    max_x = max_y = 0
+    min_x = min_y = sys.maxsize
+    for x,y in lista_de_pontos:
+        if x > max_x:
+            max_x = x
+        if y > max_y:
+            max_y = y
+        if x < min_x:
+            min_x = x
+        if y < min_y:
+            min_y = y
+    if contorno > 0:
+        for k in range(len(lista_de_pontos)):
+            ponto = lista_de_pontos[k]
+            if ponto[0] == min_x:
+                lista_de_pontos[k] = (ponto[0] + contorno // 2, ponto[1])
+            ponto = lista_de_pontos[k]
+            if ponto[1] == min_y:
+                lista_de_pontos[k] = (ponto[0], ponto[1] + contorno // 2)
+    img = pg.Surface((max_x + contorno, max_y + contorno), pg.SRCALPHA)  # imagem vazia
+    pg.draw.polygon(img, cor, lista_de_pontos, contorno)
+    return img
+
+def arco(largura, altura, angulo_inicio, angulo_fim, cor, contorno=1):
+    '''
+    Desenha um arco dentro de um espaço definido por largura e altura, dado um angulo inicial e um final.
+    :param largura: Int
+    :param altura: Int
+    :param angulo_inicio: Int -- em graus
+    :param angulo_fim: Int -- em graus
+    :param contorno: Int
+    :return: Imagem
+    '''
+    import math
+    img = pg.Surface((largura, altura), pg.SRCALPHA)  # imagem vazia
+    pg.draw.arc(img, cor, (0, 0, largura, altura), math.radians(angulo_inicio), math.radians(angulo_fim), contorno)
+    return img
+
+
+def linha(ponto_inicial, ponto_final, cor, contorno=1):
+    '''
+    Desenha uma linha, dado um ponto inicial e um ponto final (considere o canto inferior esquerdo como o ponto (0,0)).
+    :param ponto_inicial: Tuple(Int, Int)
+    :param ponto_final: Tuple(Int, Int)
+    :param cor: Cor
+    :param contorno: Int
+    :return: Imagem
+    '''
+    max_x = max([ponto_inicial[0], ponto_final[0]])
+    max_y = max([ponto_inicial[1], ponto_final[1]])
+    img = pg.Surface((max_x, max_y), pg.SRCALPHA)  # imagem vazia
+    pg.draw.line(img, cor, ponto_inicial, ponto_final, contorno)
+    return img
+
 
 '''
 Int, Int -> Imagem

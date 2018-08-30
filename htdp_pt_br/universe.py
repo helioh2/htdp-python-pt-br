@@ -30,7 +30,18 @@ def big_bang(inic,
     :return: EstadoMundo -- estado final do mundo no momento em que programa foi parado.
     '''
 
-    # pg.init()
+    def verifica_valor_none(prox_estado, nome_funcao):
+        if prox_estado is None:
+            raise ValueError("""ERRO: Opa, parece que sua função '"""+nome_funcao+"""' retornou None. 
+                    Verifique se você deu return no estado de seu programa!""")
+        else:
+            return prox_estado
+
+    def quando_erro_invalido(err):
+        print("ERRO: Dados Inválidos")
+        print("\t--- "+str(err))
+        sys.exit(0)
+
     estado = inic
     clock = pg.time.Clock()
 
@@ -48,14 +59,29 @@ def big_bang(inic,
                 sys.exit(0)
 
             if event.type == pg.KEYDOWN:
-                estado = quando_tecla(estado, event.key)
+                try:
+                    prox_estado = quando_tecla(estado, event.key)
+                    estado = verifica_valor_none(prox_estado, 'quando_tecla')
+                except ValueError as err:
+                    quando_erro_invalido(err)
             elif event.type == pg.KEYUP:
-                estado = quando_solta_tecla(estado, event.key)
+                try:
+                    prox_estado = quando_solta_tecla(estado, event.key)
+                    estado = verifica_valor_none(prox_estado, 'quando_solta_tecla')
+                except ValueError as err:
+                    quando_erro_invalido(err)
             elif event.type in [pg.MOUSEBUTTONDOWN, pg.MOUSEBUTTONUP, pg.MOUSEMOTION]:
-                x, y = pg.mouse.get_pos()
-                estado = quando_mouse(estado, x, y, event.type)
-
-        estado = quando_tick(estado)
+                try:
+                    x, y = pg.mouse.get_pos()
+                    prox_estado = quando_mouse(estado, x, y, event.type)
+                    estado = verifica_valor_none(prox_estado, 'quando_mouse')
+                except ValueError as err:
+                    quando_erro_invalido(err)
+        try:
+            prox_estado = quando_tick(estado)
+            estado = verifica_valor_none(prox_estado, 'quando_tick')
+        except ValueError as err:
+            quando_erro_invalido(err)
 
         tela.fill(cor_fundo)
         desenhar(estado)

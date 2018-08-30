@@ -14,11 +14,13 @@ TELA = criar_tela_base(LARGURA, ALTURA)
 
 L_FOGUETE = 60
 A_FOGUETE = 100
-IMG_FOGUETE = retangulo(60, 100, pg.color.Color("darkred"))
-IMG_FOGUETE = girar(IMG_FOGUETE, 45)
-BOLA = circulo(50, Cor("yellow"))
-IMG_FOGUETE = sobrepor(IMG_FOGUETE, BOLA)
+# IMG_FOGUETE = retangulo(60, 100, pg.color.Color("darkred"))
+# IMG_FOGUETE = girar(IMG_FOGUETE, 45)
+# BOLA = circulo(50, Cor("yellow"))
+# IMG_FOGUETE = sobrepor(IMG_FOGUETE, BOLA)
 
+# IMG_FOGUETE = poligono([(0,0), (100, 0), (100,100), (0,100)], Cor("darkred"), 2)
+IMG_FOGUETE = linha((100,0), (0,100), Cor("darkred"), 5)
 # X = 200  #numero magico
 X = LARGURA // 2
 
@@ -82,7 +84,7 @@ def main():
 
 
 
-# main()
-colocar_imagem_sobre_tela_e_mostrar(IMG_FOGUETE, 50, 50)
+main()
+# colocar_imagem_sobre_tela_e_mostrar(IMG_FOGUETE, 50, 50)
 # pg.draw.rect(TELA, "Red", )
     

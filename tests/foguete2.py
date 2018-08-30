@@ -14,7 +14,7 @@ tela = criar_tela_base(LARGURA, ALTURA)
 
 L_FOGUETE = 100
 A_FOGUETE = 100
-IMG_FOGUETE = carregar_imagem('foguete.png', L_FOGUETE, A_FOGUETE)    #os.path.join('', 'cat1.png'))
+IMG_FOGUETE = carregar_imagem('foguete2.png', L_FOGUETE, A_FOGUETE)    #os.path.join('', 'cat1.png'))
 
 
 
@@ -52,7 +52,7 @@ Faz o foguete descer 3 pixels no eixo y, se não estiver no chao
 '''
 def desce(y):
     if y > ALTURA or y < 0:
-        return "Foguete invalido"
+        raise ValueError("ERRO: A altura do foguete não pode ser menor que 0 nem maior que a altura máxima.")
     else:
         if y >= ALTURA - 2:
             return ALTURA
@@ -76,19 +76,19 @@ def desenha(y):
 
 ''' Foguete -> Foguete '''
 ''' inicie o mundo com main()'''
-# def main():
-#     big_bang(F_INICIAL,
-#              quando_tick=desce, \
-#              desenhar=desenha)
-#
-#
-#
-# main()
+def main():
+    big_bang(F_INICIAL,
+             quando_tick=desce, \
+             desenhar=desenha)
+
+
+
+main()
 # mostrar(desenha, 400)
 # animar(desenha)
 
 # tela = colocar_imagem(IMG_FOGUETE, tela, 200, 200)
 # mostrar_tela()
 
-colocar_imagem_sobre_tela_e_mostrar(IMG_FOGUETE, 200, 200)
+# colocar_imagem_sobre_tela_e_mostrar(IMG_FOGUETE, 200, 200)
     
