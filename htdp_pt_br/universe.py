@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from htdp_pt_br.image import *
 
+
 def big_bang(inic,
              tela=tela,
              quando_tick=lambda e: e,
@@ -38,12 +39,14 @@ def big_bang(inic,
             return prox_estado
 
     def quando_erro_invalido(err):
-        print("ERRO: Dados Inválidos")
-        print("\t--- "+str(err))
+        raise ValueError("ERRO: Dados Inválidos\n\t--- "+str(err))
         sys.exit(0)
 
     estado = inic
     clock = pg.time.Clock()
+    import time
+    inic_time = time.time()
+
 
     while True:
 
@@ -51,6 +54,8 @@ def big_bang(inic,
 
         if parar_quando(estado):
             print(estado)
+            end_time = time.time()
+            print(end_time - inic_time)
             sys.exit(0)
 
         for event in pg.event.get():

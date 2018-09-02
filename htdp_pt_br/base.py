@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import pygame as pg
+# from pysistence import make_list as cria_lista
+# from pysistence.persistent_list import PList, EmptyList
+
+from htdp_pt_br.list import *
 
 pg.init()
 
@@ -46,3 +50,65 @@ def definir_estrutura(nome, campos, mutavel=False):
     else:
         from namedlist import namedlist
         return namedlist(nome, campos)
+
+
+
+
+
+# VAZIA = cria_lista()
+#
+#
+# def vazia(lista):
+#     return not lista
+#
+# def cons(item, lista):
+#     '''
+#     Immutable list creator.
+#     :param item: Object
+#     :param list: Tuple[Object]
+#     :return:
+#     '''
+#     if not isinstance(lista, PList) and not isinstance(lista, EmptyList):
+#         raise ValueError("ERRO: Você passou algo que não é uma lista.")
+#     return lista.cons(item)
+#
+#
+# def primeiro(lista):
+#     '''
+#
+#     :param list:
+#     :return:
+#     '''
+#     if vazia(lista) or not isinstance(lista, PList):
+#         raise ValueError("ERRO: Parece que você tentou pegar o primeiro de uma lista vazia")
+#     return lista.first
+#
+# def resto(lista):
+#     '''
+#
+#     :param list:
+#     :return:
+#     '''
+#     if vazia(lista) or not isinstance(lista, PList):
+#         raise ValueError("ERRO: Parece que você tentou pegar o resto de uma lista vazia")
+#     return lista.rest
+#
+#
+# def reverte(lista):
+#     if vazia(lista):
+#         return VAZIA
+#     elif not isinstance(lista, PList):
+#         raise ValueError("ERRO: Parece que você passou algo que não é uma lista")
+#     else:
+#         return lista.reverse()
+#
+#
+# def remove(itens, lista):
+#     if vazia(lista):
+#         return VAZIA
+#     elif not isinstance(lista, PList):
+#         raise ValueError("ERRO: Parece que você passou algo que não é uma lista")
+#     else:
+#         return lista.without(itens)
+#
+# def concatena(lista1, lista2):
