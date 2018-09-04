@@ -7,7 +7,7 @@ import sys
 '''
 String, Fonte, Cor, Int -> Surface
 '''
-def texto(str, fonte, cor, largura):
+def texto(str, fonte, cor, largura=tela.get_width()):
     """
     Cria uma imagem com base em um texto.
     :param str: String -- o texto.
@@ -60,7 +60,6 @@ def texto(str, fonte, cor, largura):
             surface.blit(linha, (0, y))
 
         return surface
-
     linhas = embrulha_texto(str, fonte, largura)
     return desenha_lista_de_textos(linhas, fonte, cor)
 
