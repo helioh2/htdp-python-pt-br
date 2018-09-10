@@ -360,7 +360,7 @@ def main(inic):
 
     big_bang(inic, tela=TELA,
              frequencia=0,
-             quando_tick=mover_jogo,
+             a_cada_tick=mover_jogo,
              # desenhar=desenha_jogo,
              quando_tecla=trata_tecla,
              quando_solta_tecla=trata_solta_tecla,

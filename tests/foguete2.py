@@ -78,7 +78,7 @@ def desenha(y):
 ''' inicie o mundo com main()'''
 def main():
     big_bang(F_INICIAL,
-             quando_tick=desce, \
+             a_cada_tick=desce, \
              desenhar=desenha)
 
 
