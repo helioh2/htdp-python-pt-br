@@ -17,7 +17,7 @@ TELA = pg.display.set_mode((LARGURA, ALTURA))
 
 try:
     IMG_VACA_INO = pg.image.load('vaca-ino.png')    #os.path.join('', 'cat1.png'))
-    IMG_VACA_VORTANO = pg.transform.flip(IMG_VACA_INO, True, False)
+    IMG_VACA_VORTANO = espelhar(IMG_VACA_INO, True, False)
     IMG_CC_VORTANO = pg.image.load('chupacabra.jpg')
     IMG_CC_VORTANO = pg.transform.scale(IMG_CC_VORTANO, (20,20))
     IMG_CC_INO = pg.transform.flip(IMG_CC_VORTANO, True, False)
@@ -361,7 +361,7 @@ def main(inic):
     big_bang(inic, tela=TELA,
              frequencia=0,
              quando_tick=mover_jogo,
-             # desenhar=desenha_jogo,
+             desenhar=desenha_jogo,
              quando_tecla=trata_tecla,
              quando_solta_tecla=trata_solta_tecla,
              parar_quando=lambda j: j.cont > 500,
