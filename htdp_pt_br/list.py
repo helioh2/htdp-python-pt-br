@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 ###Based on https://github.com/zhemao/funktown
 
 
@@ -105,7 +108,7 @@ class ListaImutavel(object):
         return '[' + ', '.join([str(x) for x in self]) + ']'
 
     def __repr__(self):
-        return 'ImmutableList(' + str(self) + ')'
+        return 'Lista(' + str(self) + ')'
 
 
 
@@ -122,8 +125,8 @@ def vazia(lista):
 def conj(item, lista):
     '''
     Immutable list creator.
-    :param item: Object
-    :param list: Tuple[Object]
+    :param item:
+    :param list:
     :return:
     '''
     if not isinstance(lista, ListaImutavel):

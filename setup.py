@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="htdp_pt_br",
-    version="0.1.1",
+    version="0.1.2",
     author="Helio H. Monte-Alto",
     author_email="heliohenrique3@gmail.com",
     description="A library and framework based on the HtDP approach for teaching programming, by Matthias Felleisen et al. It is similar to the htdp_pt_br packages in Racket.",

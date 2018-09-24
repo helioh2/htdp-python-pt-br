@@ -5,7 +5,7 @@ from htdp_pt_br.image import *
 
 def big_bang(inic,
              tela=tela,
-             quando_tick=lambda e: e,
+             a_cada_tick=lambda e: e,
              frequencia=28,
              desenhar=lambda e: tela.blit(texto("NADA A MOSTRAR. VERIFIQUE SE VOCÊ PASSOU A FUNÇÃO DE DESENHHAR PARA O BIG-BANG", Fonte("monospace",30),
                                                 Cor("red"), tela.get_width()), (0, tela.get_height()//2)),
@@ -14,7 +14,8 @@ def big_bang(inic,
              quando_mouse=lambda e, x, y, ev: e, \
              parar_quando=lambda e: False,\
              modo_debug=False,
-             fonte_debug = 15):
+             fonte_debug = 15,
+             cor_fundo = COR_BRANCO):
     '''
     Função que funciona como um framework para desenvolvimento de programas interativos.
     :param inic: EstadoMundo -- estado inicial do mundo (programa). O tipo EstadoMundo deve ser definido pelo programador.
@@ -28,6 +29,7 @@ def big_bang(inic,
     :param parar_quando: Function: EstadoMundo -> Boolean -- função que recebe estado atual do mundo e responde se deve (True) ou não deve (False) parar o programa.
     :param modo_debug: Boolean -- flag que indica se devem aparecer informações de debug (escreve estado na tela).
     :param fonte_debug: Int -- tamanho da fonte do modo debug.
+    :param cor_fundo: Cor -- cor do fundo
     :return: EstadoMundo -- estado final do mundo no momento em que programa foi parado.
     '''
 
@@ -47,6 +49,7 @@ def big_bang(inic,
     import time
     inic_time = time.time()
 
+    tela.fill(cor_fundo)
 
     while True:
 
@@ -83,8 +86,8 @@ def big_bang(inic,
                 except ValueError as err:
                     quando_erro_invalido(err)
         try:
-            prox_estado = quando_tick(estado)
-            estado = verifica_valor_none(prox_estado, 'quando_tick')
+            prox_estado = a_cada_tick(estado)
+            estado = verifica_valor_none(prox_estado, 'a_cada_tick')
         except ValueError as err:
             quando_erro_invalido(err)
 
