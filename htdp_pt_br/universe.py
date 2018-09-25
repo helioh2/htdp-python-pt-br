@@ -6,6 +6,7 @@ from htdp_pt_br.image import *
 def big_bang(inic,
              tela=tela,
              a_cada_tick=lambda e: e,
+             quando_tick=lambda e: e,
              frequencia=28,
              desenhar=lambda e: tela.blit(texto("NADA A MOSTRAR. VERIFIQUE SE VOCÊ PASSOU A FUNÇÃO DE DESENHHAR PARA O BIG-BANG", Fonte("monospace",30),
                                                 Cor("red"), tela.get_width()), (0, tela.get_height()//2)),
@@ -86,7 +87,7 @@ def big_bang(inic,
                 except ValueError as err:
                     quando_erro_invalido(err)
         try:
-            prox_estado = a_cada_tick(estado)
+            prox_estado = quando_tick(a_cada_tick(estado))
             estado = verifica_valor_none(prox_estado, 'a_cada_tick')
         except ValueError as err:
             quando_erro_invalido(err)

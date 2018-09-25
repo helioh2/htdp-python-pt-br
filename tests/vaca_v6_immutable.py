@@ -224,7 +224,7 @@ def mover_ccs(ccs):
     if ccs.vazia:
         return VAZIA
     else:
-        return conj(mover_cc(primeiro(ccs)), mover_ccs(resto(ccs)))
+        return juntar(mover_cc(primeiro(ccs)), mover_ccs(resto(ccs)))
 
 
 '''
@@ -243,7 +243,7 @@ def mover_jogo(jogo):
         x = random.randrange(PAREDE_ESQUERDA, PAREDE_DIREITA)
         y = random.randrange(PAREDE_CIMA, PAREDE_BAIXO)
         novo_cc = Chupacabra(x, y, 3)
-        ccs = conj(novo_cc, ccs)
+        ccs = juntar(novo_cc, ccs)
         spawn_timeout = 1
 
     return Jogo(vaca, ccs, jogo.game_over, spawn_timeout, jogo.cont+1)
