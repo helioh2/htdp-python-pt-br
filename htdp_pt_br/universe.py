@@ -6,20 +6,22 @@ from htdp_pt_br.image import *
 def big_bang(inic,
              tela=tela,
              a_cada_tick=lambda e: e,
+             quando_tick=lambda e: e,
              frequencia=28,
              desenhar=lambda e: tela.blit(texto("NADA A MOSTRAR. VERIFIQUE SE VOCÊ PASSOU A FUNÇÃO DE DESENHHAR PARA O BIG-BANG", Fonte("monospace",30),
                                                 Cor("red"), tela.get_width()), (0, tela.get_height()//2)),
              quando_tecla=lambda e, k: e, \
              quando_solta_tecla=lambda e, k: e, \
              quando_mouse=lambda e, x, y, ev: e, \
-             parar_quando=lambda e: False, \
+             parar_quando=lambda e: False,\
              modo_debug=False,
-             fonte_debug = 15):
+             fonte_debug = 15,
+             cor_fundo = COR_BRANCO):
     '''
     Função que funciona como um framework para desenvolvimento de programas interativos.
     :param inic: EstadoMundo -- estado inicial do mundo (programa). O tipo EstadoMundo deve ser definido pelo programador.
     :param tela: Surface -- (opcional) insere tela diferente da padrão.
-    :param a_cada_tick: Function: EstadoMundo -> EstadoMundo -- função que recebe o estado atual do mundo, gerando um novo estado.
+    :param quando_tick: Function: EstadoMundo -> EstadoMundo -- função que recebe o estado atual do mundo, gerando um novo estado.
     :param frequencia: Int -- frequência (frame rate) com que a função quando_tick é chamada.
     :param desenhar: Function: EstadoMundo -> Imagem -- função que recebe estado atual do mundo e cria uma imagem.
     :param quando_tecla: Function: EstadoMundo Tecla -> EstadoMundo -- função que recebe estado atual do mundo e o código de uma tecla (definido por pg.<NOME_TECLA>) quando a tecla é pressionada.
@@ -28,6 +30,7 @@ def big_bang(inic,
     :param parar_quando: Function: EstadoMundo -> Boolean -- função que recebe estado atual do mundo e responde se deve (True) ou não deve (False) parar o programa.
     :param modo_debug: Boolean -- flag que indica se devem aparecer informações de debug (escreve estado na tela).
     :param fonte_debug: Int -- tamanho da fonte do modo debug.
+    :param cor_fundo: Cor -- cor do fundo
     :return: EstadoMundo -- estado final do mundo no momento em que programa foi parado.
     '''
 
@@ -47,6 +50,7 @@ def big_bang(inic,
     import time
     inic_time = time.time()
 
+    tela.fill(cor_fundo)
 
     while True:
 
@@ -83,7 +87,7 @@ def big_bang(inic,
                 except ValueError as err:
                     quando_erro_invalido(err)
         try:
-            prox_estado = a_cada_tick(estado)
+            prox_estado = quando_tick(a_cada_tick(estado))
             estado = verifica_valor_none(prox_estado, 'a_cada_tick')
         except ValueError as err:
             quando_erro_invalido(err)

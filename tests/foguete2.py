@@ -14,7 +14,7 @@ tela = criar_tela_base(LARGURA, ALTURA)
 
 L_FOGUETE = 100
 A_FOGUETE = 100
-IMG_FOGUETE = carregar_imagem('foguete2.png', L_FOGUETE, A_FOGUETE)    #os.path.join('', 'cat1.png'))
+IMG_FOGUETE = carregar_imagem('foguete.png', L_FOGUETE, A_FOGUETE)    #os.path.join('', 'cat1.png'))
 
 
 
@@ -79,7 +79,8 @@ def desenha(y):
 def main():
     big_bang(F_INICIAL,
              a_cada_tick=desce, \
-             desenhar=desenha)
+             desenhar=desenha,
+             cor_fundo=Cor("blue"))
 
 
 

@@ -227,6 +227,16 @@ def girar(imagem, angulo):
     '''
     return pg.transform.rotate(imagem, angulo)
 
+
+def espelhar(imagem, horizontal=True, vertical=False):
+    '''
+
+    :param imagem:
+    :param horizontal:
+    :return:
+    '''
+    return pg.transform.flip(imagem, horizontal, vertical)
+
 '''
 String, [Int, Int, Imagem] -> Imagem
 Carrega imagem de arquivo. Se não for possível carregar, insere uma imagem substituta.

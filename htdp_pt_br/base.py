@@ -15,20 +15,16 @@ Cor = pg.color.Color
 LARGURA_PADRAO = 400
 ALTURA_PADRAO = 300
 COR_BRANCO = (255, 255, 255)
-cor_fundo = COR_BRANCO
 
-def criar_tela_base(largura, altura, fundo=Cor("white")):
+def criar_tela_base(largura, altura):
     '''
     Cria tela base do aplicativo.
     :param largura: Int
     :param altura: Int
-    :param fundo: Cor
     :return: Tela
     '''
     tela = pg.display.set_mode((largura, altura))
-    tela.fill(fundo)
-    global cor_fundo
-    cor_fundo = fundo
+    tela.fill(COR_BRANCO)
     return tela
 
 tela = criar_tela_base(LARGURA_PADRAO, ALTURA_PADRAO)
